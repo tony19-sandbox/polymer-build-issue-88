@@ -3,9 +3,14 @@
  1. Install `polymer-cli` that includes `polymer-build#missing-file-handling`.
  2. Run `polymer build`.
  3. Observe it silently fails and does not print `"Build complete!"`.
- 4. Delete `images/*.png`.
+ 4. Do **one** of the following:
+   * Delete `images/*.png`.
+   * Delete `src/ost-carousel/`.
+   * Delete `src/search-box/` AND `src/view*`
  5. Rebuild.
- 6. Observe the build correctly errors out, indicating nonexistent files. (Is there a premature exit?)
+ 6. Observe the build correctly errors out, indicating nonexistent files.
+
+Having just the right balance of tasks in the source stream causes the build to abort with a `0` exit code (without emitting any file-not-found errors).
 
 ### Environment
 
