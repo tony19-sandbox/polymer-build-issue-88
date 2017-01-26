@@ -12,6 +12,9 @@
 
 Having just the right balance of tasks in the source stream causes the build to abort with a `0` exit code (without emitting any file-not-found errors).
 
+https://github.com/Polymer/polymer-build/issues/88
+https://github.com/Polymer/polymer-build/pull/111
+
 ### Environment
 
  * macOS Sierra 10.12
