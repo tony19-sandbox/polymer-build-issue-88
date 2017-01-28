@@ -1,4 +1,4 @@
-# repro for polymer-build issue 88
+# repro for polymer-build issue 88 [![Build Status](https://travis-ci.org/tony19-sandbox/polymer-build-issue-88.svg?branch=master)](https://travis-ci.org/tony19-sandbox/polymer-build-issue-88)
 
 This project demonstrates `polymer-build` [issue 88](https://github.com/Polymer/polymer-build/issues/88),
 where it silently fails when an HTML import points to a non-existent
