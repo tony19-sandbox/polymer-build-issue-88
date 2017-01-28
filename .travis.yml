@@ -1,0 +1,15 @@
+language: node_js
+sudo: required
+dist: trusty
+node_js:
+  - 'node'
+  - '6'
+  - '5'
+  - '4'
+before_script:
+  - npm install -g tony19-contrib/polymer-cli#missing-file-handling
+  - bower install
+script:
+  - polymer --version
+  - polymer build
+
