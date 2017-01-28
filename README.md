@@ -14,7 +14,7 @@ example:
 
 `my-icons.html`:
 
-    <link rel="import" href="../nonexistent.html">
+    <link rel="import" href="bower_components/nonexistent.html">
 
 [polymer-build PR#111](https://github.com/Polymer/polymer-build/pull/111)
 fixes the simple case above, but the bug still manifests in more complex
