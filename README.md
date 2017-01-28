@@ -29,10 +29,19 @@ scenarios, such as the one in this repo.
         ./setup.sh
         polymer build
 
- 2. Run `polymer build`.
- 3. Observe it silently fails.
-    **The expected behavior here is that the build command exits with
-    a "file not found" error, and the exit code should not be `0`.**
+ 2. Observe it silently fails like this:
+
+        $ polymer build 
+        warn:    "sourceGlobs" config option has been renamed to "sources" and will no longer be supported in future versions
+        warn:    "includeDependencies" config option has been renamed to "extraDependencies" and will no longer be supported in future versions
+        info:    Preparing build...
+        info:    Building application...
+        info:    Generating build/unbundled...
+        info:    Generating build/bundled...
+        $
+
+    *The expected behavior here is that the build command exits with
+    a "file not found" error, and the exit code should not be `0`.*
 
 ### Environment
 
