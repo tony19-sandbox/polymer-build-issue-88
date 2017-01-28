@@ -1,52 +1,88 @@
-# repro for polymer-build issue 88 [![Build Status](https://travis-ci.org/tony19-sandbox/polymer-build-issue-88.svg?branch=master)](https://travis-ci.org/tony19-sandbox/polymer-build-issue-88)
+# Polymer App Toolbox - Starter Kit
 
-This project demonstrates `polymer-build` [issue 88](https://github.com/Polymer/polymer-build/issues/88),
-where it silently fails when an HTML import points to a non-existent
-file that sits in the source root (possibly other locations). For
-example:
+[![Build Status](https://travis-ci.org/PolymerElements/polymer-starter-kit.svg?branch=master)](https://travis-ci.org/PolymerElements/polymer-starter-kit)
 
-*Directory Tree*:
+This template is a starting point for building apps using a drawer-based
+layout. The layout is provided by `app-layout` elements.
 
-    .
-    ├── src
-    │   ├── my-icons.html
+This template, along with the `polymer-cli` toolchain, also demonstrates use
+of the "PRPL pattern" This pattern allows fast first delivery and interaction with
+the content at the initial route requested by the user, along with fast subsequent
+navigation by pre-caching the remaining components required by the app and
+progressively loading them on-demand as the user navigates through the app.
+
+The PRPL pattern, in a nutshell:
+
+* **Push** components required for the initial route
+* **Render** initial route ASAP
+* **Pre-cache** components for remaining routes
+* **Lazy-load** and progressively upgrade next routes on-demand
+
+### Migrating from Polymer Starter Kit v1?
+
+[Check out our blog post that covers what's changed in PSK2 and how to migrate!](https://www.polymer-project.org/1.0/blog/2016-08-18-polymer-starter-kit-or-polymer-cli.html)
+
+### Setup
+
+##### Prerequisites
+
+Install [polymer-cli](https://github.com/Polymer/polymer-cli):
+
+    npm install -g polymer-cli
+
+##### Initialize project from template
+
+    mkdir my-app
+    cd my-app
+    polymer init starter-kit
+
+### Start the development server
+
+This command serves the app at `http://localhost:8080` and provides basic URL
+routing for the app:
+
+    polymer serve --open
 
 
-`my-icons.html`:
+### Build
 
-    <link rel="import" href="bower_components/nonexistent.html">
+This command performs HTML, CSS, and JS minification on the application
+dependencies, and generates a service-worker.js file with code to pre-cache the
+dependencies based on the entrypoint and fragments specified in `polymer.json`.
+The minified files are output to the `build/unbundled` folder, and are suitable
+for serving from a HTTP/2+Push compatible server.
 
-[polymer-build PR#111](https://github.com/Polymer/polymer-build/pull/111)
-fixes the simple case above, but the bug still manifests in more complex
-scenarios, such as the one in this repo.
+In addition the command also creates a fallback `build/bundled` folder,
+generated using fragment bundling, suitable for serving from non
+H2/push-compatible servers or to clients that do not support H2/Push.
 
-### Steps to reproduce:
+    polymer build
 
- 1. Run `npm install` on this repo (**NOTE:** don't use `yarn` here
-    because it [doesn't handle GitHub branches properly](https://github.com/yarnpkg/yarn/issues/2572)).
- 2. Run `polymer build`.
- 3. Observe it silently fails.
-    **The expected behavior here is that the build command exits with
-    a "file not found" error, and the exit code should not be `0`.**
+### Preview the build
 
-The interesting thing is removing some files somehow allows `polymer-build`
-to emit the "file not found" errors:
+This command serves the minified version of the app at `http://localhost:8080`
+in an unbundled state, as it would be served by a push-compatible server:
 
- 4. Do **one** of the following:
-   * Delete `images/*.png`.
-   * Delete `src/ost-carousel/`.
-   * Delete `src/search-box/` AND `src/view*`
- 5. Rebuild with `polymer build`.
- 6. Observe the build correctly errors out, indicating nonexistent files.
+    polymer serve build/unbundled
 
-### Environment
+This command serves the minified version of the app at `http://localhost:8080`
+generated using fragment bundling:
 
- * macOS Sierra 10.12
- * node 7.4.0
- * `polymer-cli`
-  - `0.17.0`
-  - `0.18.0-alpha.8`
-  - `tony19-contrib/polymer-cli#missing-file-handling`
-    * This is [`0.18.0-alpha.9`](https://github.com/Polymer/polymer-cli/commit/c231a2c813f532bd871c298c13adf5b38497153e)
-    plus `polymer-build#missing-file-handling`
-    @[`df7b17c`](https://github.com/Polymer/polymer-build/pull/111/commits/df7b17cfcd516e680d15ee2a9fa5a7b7f5fa6e03)
+    polymer serve build/bundled
+
+### Run tests
+
+This command will run
+[Web Component Tester](https://github.com/Polymer/web-component-tester) against the
+browsers currently installed on your machine.
+
+    polymer test
+
+### Adding a new view
+
+You can extend the app by adding more views that will be demand-loaded
+e.g. based on the route, or to progressively render non-critical sections
+of the application.  Each new demand-loaded fragment should be added to the
+list of `fragments` in the included `polymer.json` file.  This will ensure
+those components and their dependencies are added to the list of pre-cached
+components (and will have bundles created in the fallback `bundled` build).

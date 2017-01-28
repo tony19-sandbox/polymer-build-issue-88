@@ -1,9 +1,13 @@
 {
   "entrypoint": "index.html",
   "shell": "src/shrine-app.html",
+  "fragments": [
+    "src/shrine-detail.html",
+    "src/shrine-list.html"
+  ],
   "sourceGlobs": [
-    "src/**/*",
-   "images/**/*",
+   "src/**/*",
+    "images/**/*",
    "bower.json"
   ],
   "includeDependencies": [
