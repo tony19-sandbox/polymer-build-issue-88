@@ -1,20 +1,43 @@
 # repro for polymer-build issue 88
 
- 1. Install one of the `polymer-cli` versions listed in **Environment**.
+This project demonstrates `polymer-build` [issue 88](https://github.com/Polymer/polymer-build/issues/88),
+where it silently fails when an HTML import points to a non-existent
+file that sits in the source root (possibly other locations). For
+example:
+
+*Directory Tree*:
+
+    .
+    ├── src
+    │   ├── my-icons.html
+
+
+`my-icons.html`:
+
+    <link rel="import" href="../nonexistent.html">
+
+[polymer-build PR#111](https://github.com/Polymer/polymer-build/pull/111)
+fixes the simple case above, but the bug still manifests in more complex
+scenarios, such as the one in this repo.
+
+### Steps to reproduce:
+
+ 1. Run `npm install` on this repo (**NOTE:** don't use `yarn` here
+    because it [doesn't handle GitHub branches properly](https://github.com/yarnpkg/yarn/issues/2572)).
  2. Run `polymer build`.
- 3. Observe it silently fails and does not print `"Build complete!"`.
- 4. If **not** using `polymer-build#missing-file-handling`, **skip** the following steps.
- 5. Do **one** of the following:
+ 3. Observe it silently fails.
+    **The expected behavior here is that the build command exits with
+    a "file not found" error, and the exit code should not be `0`.**
+
+The interesting thing is removing some files somehow allows `polymer-build`
+to emit the "file not found" errors:
+
+ 4. Do **one** of the following:
    * Delete `images/*.png`.
    * Delete `src/ost-carousel/`.
    * Delete `src/search-box/` AND `src/view*`
- 6. Rebuild.
- 7. Observe the build correctly errors out, indicating nonexistent files.
-
-Having just the right balance of tasks in the source stream causes the build to abort with a `0` exit code (without emitting any file-not-found errors).
-
-* https://github.com/Polymer/polymer-build/issues/88
-* https://github.com/Polymer/polymer-build/pull/111
+ 5. Rebuild with `polymer build`.
+ 6. Observe the build correctly errors out, indicating nonexistent files.
 
 ### Environment
 
@@ -23,4 +46,7 @@ Having just the right balance of tasks in the source stream causes the build to 
  * `polymer-cli`
   - `0.17.0`
   - `0.18.0-alpha.8`
-  - `master` branch @[`0f2720e`](https://github.com/Polymer/polymer-cli/commit/0f2720e) with dependency on [`tony19-contrib/polymer-build#dist-missing-file-handling`](https://github.com/tony19-contrib/polymer-build/commit/848526a14f095842675da568142f6c7267ef8387) (a build of `polymer-build` `missing-file-handling` branch @[`52205d6`](https://github.com/Polymer/polymer-build/commit/52205d64a0ef26fd0403f6b6a6b8aee10cbeccdc)
+  - `tony19-contrib/polymer-cli#missing-file-handling`
+    * This is [`0.18.0-alpha.9`](https://github.com/Polymer/polymer-cli/commit/c231a2c813f532bd871c298c13adf5b38497153e)
+    plus `polymer-build#missing-file-handling`
+    @[`df7b17c`](https://github.com/Polymer/polymer-build/pull/111/commits/df7b17cfcd516e680d15ee2a9fa5a7b7f5fa6e03)
