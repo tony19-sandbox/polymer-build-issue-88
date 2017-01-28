@@ -7,9 +7,8 @@ node_js:
   - '5'
   - '4'
 before_script:
-  - npm install -g tony19-contrib/polymer-cli#missing-file-handling
+  - npm install -g bower
   - bower install
 script:
-  - polymer --version
-  - polymer build
+  - npm run build
 
