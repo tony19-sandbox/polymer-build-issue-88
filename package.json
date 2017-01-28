@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/tony19-sandbox/polymer-build-issue-88#readme",
   "devDependencies": {
-    "polymer-cli": "github:tony19-contrib/polymer-cli#missing-file-handling"
+    "polymer-cli": "=0.18.0-alpha.9"
   }
 }
