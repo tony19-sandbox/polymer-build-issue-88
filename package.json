@@ -1,0 +1,21 @@
+{
+  "name": "polymer-build-issue-88",
+  "version": "1.0.0",
+  "description": "Demo for `polymer-build` issue 88",
+  "scripts": {
+    "build": "polymer build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tony19-sandbox/polymer-build-issue-88.git"
+  },
+  "author": "Tony Trinh <tony19@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tony19-sandbox/polymer-build-issue-88/issues"
+  },
+  "homepage": "https://github.com/tony19-sandbox/polymer-build-issue-88#readme",
+  "devDependencies": {
+    "polymer-cli": "github:tony19-contrib/polymer-cli#missing-file-handling"
+  }
+}
