@@ -1,12 +1,18 @@
 #!/bin/sh -e
 
-# Update polymer-cli's dependency on polymer-build so that it uses
-# a build of polymer-build#missing-file-handling (commit df7b17c)
+root=$PWD
 
-cd node_modules/polymer-cli
+# Delete polymer-cli's polymer-build now, or else npm fails
+# if polymer-build is already symlinked.
+rm -rf node_modules/polymer-cli/node_modules/polymer-build
+
+# Build polymer-build#missing-file-handling @df7b17c
 npm i Polymer/polymer-build#df7b17c
-cd node_modules/polymer-build
+pushd node_modules/polymer-build
+npm i || true  # ignore false-negative error
+popd
 
-# Ignore the error from the prepublish test. One of the unit tests
-# is emitting an error, but it's not actually a test failure.
-npm i || true
+# Link polymer-cli to the polymer-build we just built
+cd node_modules/polymer-cli
+echo linking polymer-build in polymer-cli ...
+ln -s $root/node_modules/polymer-build node_modules/polymer-build
