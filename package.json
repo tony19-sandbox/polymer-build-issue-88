@@ -16,8 +16,11 @@
   },
   "homepage": "https://github.com/tony19-sandbox/polymer-build-issue-88#readme",
   "devDependencies": {
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
+    "merge-stream": "^1.0.1",
     "polymer-cli": "=0.18.0-alpha.9"
   }
 }
