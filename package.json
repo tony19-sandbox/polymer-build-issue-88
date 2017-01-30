@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Demo for `polymer-build` issue 88",
   "scripts": {
-    "build": "polymer --version && polymer build"
+    "build": "polymer --version && polymer build --verbose"
   },
   "repository": {
     "type": "git",
