@@ -8,9 +8,9 @@ rm -rf node_modules/polymer-cli/node_modules/polymer-build
 
 # Build polymer-build#missing-file-handling @df7b17c
 npm i Polymer/polymer-build#df7b17c
-pushd node_modules/polymer-build
+cd node_modules/polymer-build
 npm i || true  # ignore false-negative error
-popd
+cd $root
 
 # Link polymer-cli to the polymer-build we just built
 cd node_modules/polymer-cli
