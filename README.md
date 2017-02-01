@@ -22,11 +22,9 @@ scenarios, such as the one in this repo.
 
 ### Steps to reproduce
 
- 1. Run the following commands. Ignore the `npm error` from `polymer-build`'s
-    unit tests (false negative).
+ 1. Run the following commands.
 
         npm install
-        ./setup.sh
         polymer build
 
  2. Observe it silently fails like this:
@@ -64,5 +62,4 @@ A similar failure occurs when using the `gulpfile.js` (which uses
 
  * macOS Sierra 10.12
  * node 7.4.0
- * `polymer-cli` `0.18.0-alpha.9` plus `polymer-build#missing-file-handling`
-    @[`df7b17c`](https://github.com/Polymer/polymer-build/pull/111/commits/df7b17cfcd516e680d15ee2a9fa5a7b7f5fa6e03)
+ * `polymer-cli` `0.18.0-alpha.9`
