@@ -25,6 +25,7 @@ scenarios, such as the one in this repo.
  1. Run the following commands.
 
         npm install
+        bower install
         polymer build
 
  2. Observe it silently fails like this:
