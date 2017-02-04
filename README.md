@@ -20,6 +20,8 @@ example:
 fixes the simple case above, but the bug still manifests in more complex
 scenarios, such as the one in this repo.
 
+The error is demonstrated in [this Travis build](https://travis-ci.org/tony19-sandbox/polymer-build-issue-88/jobs/197565652).
+
 ### Steps to reproduce
 
  1. Run the following commands.
