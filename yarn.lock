@@ -4715,9 +4715,9 @@ polymer-build@^0.6.0:
     vinyl-fs "^2.4.3"
     vulcanize "^1.14.8"
 
-polymer-build@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/polymer-build/-/polymer-build-0.7.0.tgz#2bff2c2d24344592fba2918cfed3677e5d39210d"
+polymer-build@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/polymer-build/-/polymer-build-0.7.1.tgz#b27289789861a13dd71853f4276e828e290cfa39"
   dependencies:
     "@types/parse5" "^2.2.32"
     "@types/vinyl" "^1.1.29"
@@ -5834,9 +5834,9 @@ ternary-stream@^2.0.1:
     merge-stream "^1.0.0"
     through2 "^2.0.1"
 
-"test-fixture@github:polymerelements/test-fixture":
+test-fixture@PolymerElements/test-fixture:
   version "2.0.1"
-  resolved "https://codeload.github.com/polymerelements/test-fixture/tar.gz/f72f0ff4e83b83b0157afed664f560da91d20f31"
+  resolved "https://codeload.github.com/PolymerElements/test-fixture/tar.gz/f72f0ff4e83b83b0157afed664f560da91d20f31"
 
 test-value@^1.1.0:
   version "1.1.0"
